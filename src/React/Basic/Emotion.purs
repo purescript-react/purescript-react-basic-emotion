@@ -105,8 +105,7 @@ foreign import elementKeyed_ ::
 
 foreign import global :: ReactComponent { styles :: Style }
 
-css :: forall r. Homogeneous r StyleProperty => { | r } -> Style
-css = unsafeCoerce
+foreign import css :: forall r. Homogeneous r StyleProperty => { | r } -> Style
 
 nested :: Style -> StyleProperty
 nested = unsafeCoerce

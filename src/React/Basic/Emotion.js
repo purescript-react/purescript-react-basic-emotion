@@ -1,14 +1,14 @@
 "use strict";
 
-var Emotion = require("@emotion/core");
-var createElement = Emotion.jsx;
+const Emotion = require("@emotion/core");
+const createElement = Emotion.jsx;
 
 exports.emptyStyle = undefined;
 
 exports.emptyStyleProperty = undefined;
 
-function flattenDataProp(component, props) {
-  var data = null;
+const flattenDataProp = (component, props) => {
+  let data = null;
   if (typeof component === "string" && props._data != null) {
     data = { _data: undefined };
     Object.entries(props._data).forEach(function(entry) {
@@ -16,10 +16,10 @@ function flattenDataProp(component, props) {
     });
   }
   return data == null ? props : Object.assign({}, props, data);
-}
+};
 
-exports.element_ = function(component, props, areChildrenDynamic) {
-  var args = [component, flattenDataProp(component, props)];
+exports.element_ = (component, props, areChildrenDynamic) => {
+  const args = [component, flattenDataProp(component, props)];
   return createElement.apply(
     null,
     areChildrenDynamic || props.children == null
@@ -28,8 +28,9 @@ exports.element_ = function(component, props, areChildrenDynamic) {
   );
 };
 
-exports.elementKeyed_ = function(component, props) {
-  return exports.element_(component, props, true);
-};
+exports.elementKeyed_ = (component, props) =>
+  exports.element_(component, props, true);
 
 exports.global = Emotion.Global;
+
+exports.css = _homogeneousDict => Emotion.css;

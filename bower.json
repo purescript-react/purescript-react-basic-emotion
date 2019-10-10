@@ -1,12 +1,7 @@
 {
   "name": "purescript-react-basic-emotion",
   "license": "Apache-2.0",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "output"
-  ],
+  "ignore": ["**/.*", "node_modules", "bower_components", "output"],
   "repository": {
     "type": "git",
     "url": "git://github.com/lumihq/purescript-react-basic-emotion.git"
