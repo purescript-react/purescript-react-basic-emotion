@@ -6,7 +6,6 @@ module React.Basic.Emotion
   , class IsStyleProperty
   , prop
   , element
-  , elementKeyed
   , css
   , selector
   , merge
@@ -28,7 +27,9 @@ import Data.Array as Array
 import Data.Either (Either(..))
 import Data.Function.Uncurried (Fn2, runFn2)
 import Foreign as F
+import Prim.Row (class Nub)
 import React.Basic (JSX, ReactComponent)
+import Record as Record
 import Type.Row.Homogeneous (class Homogeneous)
 import Unsafe.Coerce (unsafeCoerce)
 import Web.HTML.History (URL(..))
@@ -85,21 +86,14 @@ class IsStyleProperty a where
 -- | `css` prop.
 element ::
   forall props.
+  Nub
+    ( className :: String, css :: Style | props )
+    ( className :: String, css :: Style | props ) =>
+  Style ->
   ReactComponent { className :: String | props } ->
-  { className :: String, css :: Style | props } ->
+  { className :: String | props } ->
   JSX
-element = runFn2 element_
-
--- | Create a `JSX` node from a `ReactComponent`, by providing the props and a key.
--- |
--- | This function is identical to `React.Basic.elementKeyed` plus Emotion's
--- | `css` prop.
-elementKeyed ::
-  forall props.
-  ReactComponent { className :: String | props } ->
-  { key :: String, className :: String, css :: Style | props } ->
-  JSX
-elementKeyed = runFn2 elementKeyed_
+element s c p = runFn2 element_ c (Record.merge { css: s } p)
 
 foreign import element_ ::
   forall props.

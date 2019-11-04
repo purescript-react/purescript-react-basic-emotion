@@ -19,7 +19,8 @@
     "purescript-indexed-monad": "^1.1.0",
     "purescript-unsafe-reference": "^3.0.1",
     "purescript-aff": "^5.1.1",
-    "purescript-typelevel-prelude": "^5.0.0"
+    "purescript-typelevel-prelude": "^5.0.0",
+    "purescript-colors": "^5.0.0"
   },
   "devDependencies": {
     "purescript-psci-support": "^4.0.0",

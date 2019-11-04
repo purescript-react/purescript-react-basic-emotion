@@ -5,7 +5,6 @@ import Effect (Effect)
 import React.Basic.DOM as R
 import React.Basic.Emotion as E
 import React.Basic.Hooks (JSX, ReactComponent, component, element, fragment)
-import Record (merge)
 
 data Size
   = S
@@ -62,15 +61,16 @@ mkSlat = do
   box <- mkBox
   component "Slat" \props ->
     pure
-      $ E.element box
-          { css:
-            E.merge
+      $ E.element
+          ( E.merge
               [ border props
               , text L
               , E.css { flexDirection: E.str "row" }
               , spaceChildrenEvenly
               ]
-          , className: props.className
+          )
+          box
+          { className: props.className
           , content: props.content
           }
 
@@ -84,20 +84,19 @@ mkEx = do
               slatDefaults
                 { content = map (R.span_ <<< pure <<< R.text) [ "Hello", "World" ]
                 }
-          , E.element slat
-              $ merge
-                  { css:
-                    E.merge
-                      [ E.css
-                          { padding: E.int 4
-                          , maxWidth: E.int 200
-                          }
-                      , text S
-                      ]
-                  }
-                  slatDefaults
-                    { content = map (R.span_ <<< pure <<< R.text) [ "Hello", "World" ]
-                    }
+          , E.element
+              ( E.merge
+                  [ E.css
+                      { padding: E.int 4
+                      , maxWidth: E.int 200
+                      }
+                  , text S
+                  ]
+              )
+              slat
+              slatDefaults
+                { content = map (R.span_ <<< pure <<< R.text) [ "Hello", "World" ]
+                }
           ]
 
 type BoxProps
@@ -124,9 +123,8 @@ mkBox :: Effect (ReactComponent BoxProps)
 mkBox = do
   component "Box" \props ->
     pure
-      $ E.element R.div'
-          { css: boxStyle
-          , className: props.className
+      $ E.element boxStyle R.div'
+          { className: props.className
           , children: props.content
           }
 
