@@ -26,8 +26,9 @@ import Control.Monad.Except (runExcept)
 import Data.Array as Array
 import Data.Either (Either(..))
 import Data.Function.Uncurried (Fn2, runFn2)
+import Data.Symbol (SProxy(..))
 import Foreign as F
-import Prim.Row (class Nub)
+import Prim.Row (class Lacks)
 import React.Basic (JSX, ReactComponent)
 import Record as Record
 import Type.Row.Homogeneous (class Homogeneous)
@@ -86,14 +87,12 @@ class IsStyleProperty a where
 -- | `css` prop.
 element ::
   forall props.
-  Nub
-    ( className :: String, css :: Style | props )
-    ( className :: String, css :: Style | props ) =>
+  Lacks "css" props =>
   Style ->
   ReactComponent { className :: String | props } ->
   { className :: String | props } ->
   JSX
-element s c p = runFn2 element_ c (Record.merge { css: s } p)
+element s c p = runFn2 element_ c (Record.insert (SProxy :: _ "css") s p)
 
 foreign import element_ ::
   forall props.

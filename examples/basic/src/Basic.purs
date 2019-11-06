@@ -132,7 +132,7 @@ spaceChildrenEvenly :: E.Style
 spaceChildrenEvenly =
   E.css
     { "& > *":
-      E.selector
+      E.nested
         $ E.css
             { flex: E.str "1 0 auto"
             }
