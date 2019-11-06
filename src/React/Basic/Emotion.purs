@@ -7,7 +7,7 @@ module React.Basic.Emotion
   , prop
   , element
   , css
-  , selector
+  , nested
   , merge
   , str
   , int
@@ -114,8 +114,8 @@ foreign import global :: ReactComponent { styles :: Style }
 css :: forall r. Homogeneous r StyleProperty => { | r } -> Style
 css = unsafeCoerce
 
-selector :: Style -> StyleProperty
-selector = unsafeCoerce
+nested :: Style -> StyleProperty
+nested = unsafeCoerce
 
 merge :: Array Style -> Style
 merge = unsafeCoerce
