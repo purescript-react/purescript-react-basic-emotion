@@ -46,6 +46,7 @@ type SlatProps
     , borderColor :: String
     , className :: String
     , content :: Array JSX
+    , css :: E.Style
     }
 
 slatDefaults :: SlatProps
@@ -54,6 +55,7 @@ slatDefaults =
   , borderColor: "grey"
   , className: ""
   , content: mempty
+  , css: mempty
   }
 
 mkSlat :: Effect (ReactComponent SlatProps)
@@ -62,15 +64,15 @@ mkSlat = do
   component "Slat" \props ->
     pure
       $ E.element
-          ( E.merge
+          box
+          { className: props.className
+          , css:
+            E.merge
               [ border props
               , text L
               , E.css { flexDirection: E.str "row" }
               , spaceChildrenEvenly
               ]
-          )
-          box
-          { className: props.className
           , content: props.content
           }
 
@@ -85,17 +87,17 @@ mkEx = do
                 { content = map (R.span_ <<< pure <<< R.text) [ "Hello", "World" ]
                 }
           , E.element
-              ( E.merge
-                  [ E.css
-                      { padding: E.int 4
-                      , maxWidth: E.int 200
-                      }
-                  , text S
-                  ]
-              )
               slat
               slatDefaults
                 { content = map (R.span_ <<< pure <<< R.text) [ "Hello", "World" ]
+                , css =
+                  E.merge
+                    [ E.css
+                        { padding: E.int 4
+                        , maxWidth: E.int 200
+                        }
+                    , text S
+                    ]
                 }
           ]
 
@@ -123,8 +125,9 @@ mkBox :: Effect (ReactComponent BoxProps)
 mkBox = do
   component "Box" \props ->
     pure
-      $ E.element boxStyle R.div'
+      $ E.element R.div'
           { className: props.className
+          , css: boxStyle
           , children: props.content
           }
 

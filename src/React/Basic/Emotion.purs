@@ -26,11 +26,8 @@ import Control.Monad.Except (runExcept)
 import Data.Array as Array
 import Data.Either (Either(..))
 import Data.Function.Uncurried (Fn2, runFn2)
-import Data.Symbol (SProxy(..))
 import Foreign as F
-import Prim.Row (class Lacks)
 import React.Basic (JSX, ReactComponent)
-import Record as Record
 import Type.Row.Homogeneous (class Homogeneous)
 import Unsafe.Coerce (unsafeCoerce)
 import Web.HTML.History (URL(..))
@@ -87,12 +84,10 @@ class IsStyleProperty a where
 -- | `css` prop.
 element ::
   forall props.
-  Lacks "css" props =>
-  Style ->
   ReactComponent { className :: String | props } ->
-  { className :: String | props } ->
+  { className :: String, css :: Style | props } ->
   JSX
-element s c p = runFn2 element_ c (Record.insert (SProxy :: _ "css") s p)
+element = runFn2 element_
 
 foreign import element_ ::
   forall props.
