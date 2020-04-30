@@ -55,6 +55,9 @@ foreign import emptyStyle :: Style
 class IsStyle a where
   style :: a -> Style
 
+instance isStyleStyle :: IsStyle Style where
+  style = identity
+
 data StyleProperty
 
 instance semigroupStyleProperty :: Semigroup StyleProperty where
@@ -77,6 +80,9 @@ foreign import emptyStyleProperty :: StyleProperty
 
 class IsStyleProperty a where
   prop :: a -> StyleProperty
+
+instance isStylePropertyStyleProperty :: IsStyleProperty StyleProperty where
+  prop = identity
 
 -- | Create a `JSX` node from a `ReactComponent`, by providing the props.
 -- |
