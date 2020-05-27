@@ -18,6 +18,8 @@ module React.Basic.Emotion
   , unset
   , url
   , color
+  , px, px', cm, mm, inches, pt, pc
+  , em, ex, ch, rem, vw, vh, vmin, vmax, percent
   ) where
 
 import Prelude
@@ -27,6 +29,8 @@ import Control.Monad.Except (runExcept)
 import Data.Array as Array
 import Data.Either (Either(..))
 import Data.Function.Uncurried (Fn2, runFn2)
+import Data.Int as Int
+import Data.Number.Format (toString) as Number
 import Foreign as F
 import Prim.TypeError (class Warn, Text)
 import React.Basic (JSX, ReactComponent)
@@ -153,3 +157,77 @@ url (URL url') = str ("url(" <> url' <> ")")
 
 color :: Color -> StyleProperty
 color = str <<< cssStringHSLA
+
+-- Absolute length units
+
+-- | Pixels. This function does not take a `Number` because approaches to
+-- | subpixel rendering vary among browser implementations.
+px :: Int -> StyleProperty
+px x = str $ Int.toStringAs Int.decimal x <> "px"
+
+-- | Pixels and subpixels.
+-- |
+-- | WARNING: Approaches to subpixel rendering vary among browser
+-- | implementations. This means that non-integer pixel values may be displayed
+-- | differently in different browsers.
+px' :: Number -> StyleProperty
+px' x = str $ Number.toString x <> "px"
+
+-- | Centimeters
+cm :: Number -> StyleProperty
+cm x = str $ Number.toString x <> "cm"
+
+-- | Milimeters
+mm :: Number -> StyleProperty
+mm x = str $ Number.toString x <> "mm"
+
+-- | Inches (1in ≈ 2.54cm)
+inches :: Number -> StyleProperty
+inches x = str $ Number.toString x <> "in"
+
+-- | Points (1pt = 1/72 of 1in)
+pt :: Number -> StyleProperty
+pt x = str $ Number.toString x <> "pt"
+
+-- | Picas (1pc = 12 pt)
+pc :: Number -> StyleProperty
+pc x = str $ Number.toString x <> "pc"
+
+-- Relative length units
+
+-- | Relative to the font-size of the element (2em means 2 times the size of
+-- | the current font).
+em :: Number -> StyleProperty
+em x = str $ Number.toString x <> "em"
+
+-- | Relative to the x-height of the current font (rarely used).
+ex :: Number -> StyleProperty
+ex x = str $ Number.toString x <> "ex"
+
+-- | Relative to the width of the "0" (zero) character.
+ch :: Number -> StyleProperty
+ch x = str $ Number.toString x <> "ch"
+
+-- | Relative to font-size of the root element.
+rem :: Number -> StyleProperty
+rem x = str $ Number.toString x <> "rem"
+
+-- | Relative to 1% of the width of the viewport.
+vw :: Number -> StyleProperty
+vw x = str $ Number.toString x <> "vw"
+
+-- | Relative to 1% of the height of the viewport.
+vh :: Number -> StyleProperty
+vh x = str $ Number.toString x <> "vh"
+
+-- | Relative to 1% of viewport's smaller dimension.
+vmin :: Number -> StyleProperty
+vmin x = str $ Number.toString x <> "vmin"
+
+-- | Relative to 1% of viewport's larger dimension.
+vmax :: Number -> StyleProperty
+vmax x = str $ Number.toString x <> "vmax"
+
+-- | Relative to the parent element.
+percent :: Number -> StyleProperty
+percent x = str $ Number.toString x <> "%"

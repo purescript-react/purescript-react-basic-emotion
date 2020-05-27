@@ -16,7 +16,8 @@
     "purescript-react-basic": "^13.0.0",
     "purescript-unsafe-reference": "^3.0.1",
     "purescript-colors": "^5.0.0",
-    "purescript-foreign": "^5.0.0"
+    "purescript-foreign": "^5.0.0",
+    "purescript-numbers": "^7.0.0"
   },
   "devDependencies": {
     "purescript-psci-support": "^4.0.0",
