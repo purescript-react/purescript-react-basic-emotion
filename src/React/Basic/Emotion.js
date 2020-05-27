@@ -34,3 +34,5 @@ exports.elementKeyed_ = (component, props) =>
 exports.global = Emotion.Global;
 
 exports.css = _homogeneousDict => Emotion.css;
+
+exports.important = prop => typeof prop === "string" ? prop + " !important" : prop;
