@@ -21,12 +21,14 @@ module React.Basic.Emotion
   ) where
 
 import Prelude
+
 import Color (Color, cssStringHSLA)
 import Control.Monad.Except (runExcept)
 import Data.Array as Array
 import Data.Either (Either(..))
 import Data.Function.Uncurried (Fn2, runFn2)
 import Foreign as F
+import Prim.TypeError (class Warn, Text)
 import React.Basic (JSX, ReactComponent)
 import Type.Row.Homogeneous (class Homogeneous)
 import Unsafe.Coerce (unsafeCoerce)
@@ -122,10 +124,16 @@ merge = unsafeCoerce
 str :: String -> StyleProperty
 str = unsafeCoerce
 
-int :: Int -> StyleProperty
+int
+  :: Warn (Text "`int` is deprecated and may be removed in future versions. Prefer one of the unit combinators like `px` or `em` instead.")
+  => Int
+  -> StyleProperty
 int = unsafeCoerce
 
-num :: Number -> StyleProperty
+num
+  :: Warn (Text "`int` is deprecated and may be removed in future versions. Prefer one of the unit combinators like `px` or `em` instead.")
+  => Number
+  -> StyleProperty
 num = unsafeCoerce
 
 fallbacks :: Array StyleProperty -> StyleProperty
