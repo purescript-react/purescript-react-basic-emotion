@@ -6,6 +6,7 @@ module React.Basic.Emotion
   , class IsStyleProperty
   , prop
   , element
+  , elementKeyed
   , css
   , important
   , nested
@@ -108,6 +109,17 @@ foreign import element_ ::
     (ReactComponent { className :: String | props })
     { className :: String, css :: Style | props }
     JSX
+
+-- | Create a `JSX` node from a `ReactComponent`, by providing the props.
+-- |
+-- | This function is identical to `React.Basic.element` plus Emotion's
+-- | `css` prop.
+elementKeyed ::
+  forall props.
+  ReactComponent { className :: String | props } ->
+  { key :: String, className :: String, css :: Style | props } ->
+  JSX
+elementKeyed = runFn2 elementKeyed_
 
 foreign import elementKeyed_ ::
   forall props.
