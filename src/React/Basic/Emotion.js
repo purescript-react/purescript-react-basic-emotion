@@ -36,3 +36,5 @@ exports.global = Emotion.Global;
 exports.css = _homogeneousDict => Emotion.css;
 
 exports.important = prop => typeof prop === "string" ? prop + " !important" : prop;
+
+exports.keyframes = _homogeneousDict => Emotion.keyframes;
