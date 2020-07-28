@@ -8,7 +8,9 @@ module React.Basic.Emotion
   , element
   , elementKeyed
   , css
+  , global
   , important
+  , keyframes
   , nested
   , merge
   , str
@@ -133,6 +135,8 @@ foreign import global :: ReactComponent { styles :: Style }
 foreign import css :: forall r. Homogeneous r StyleProperty => { | r } -> Style
 
 foreign import important :: StyleProperty -> StyleProperty
+
+foreign import keyframes :: forall r. Homogeneous r StyleProperty => { | r } -> StyleProperty
 
 nested :: Style -> StyleProperty
 nested = unsafeCoerce
