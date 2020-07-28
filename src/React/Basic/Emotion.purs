@@ -8,6 +8,7 @@ module React.Basic.Emotion
   , element
   , elementKeyed
   , css
+  , global
   , important
   , keyframes
   , nested
