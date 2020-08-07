@@ -162,8 +162,17 @@ num = unsafeCoerce
 fallbacks :: Array StyleProperty -> StyleProperty
 fallbacks = unsafeCoerce
 
+url :: URL -> StyleProperty
+url (URL url') = str ("url(" <> url' <> ")")
+
+color :: Color -> StyleProperty
+color = str <<< cssStringHSLA
+
 none :: StyleProperty
 none = str "none"
+
+auto :: StyleProperty
+auto = str "auto"
 
 inherit :: StyleProperty
 inherit = str "inherit"
@@ -171,11 +180,106 @@ inherit = str "inherit"
 unset :: StyleProperty
 unset = str "unset"
 
-url :: URL -> StyleProperty
-url (URL url') = str ("url(" <> url' <> ")")
+hidden :: StyleProperty
+hidden = str "hidden"
 
-color :: Color -> StyleProperty
-color = str <<< cssStringHSLA
+visible :: StyleProperty
+visible = str "visible"
+
+scroll :: StyleProperty
+scroll = str "scroll"
+
+wrap :: StyleProperty
+wrap = str "wrap"
+
+nowrap :: StyleProperty
+nowrap = str "nowrap"
+
+row :: StyleProperty
+row = str "row"
+
+column :: StyleProperty
+column = str "column"
+
+default :: StyleProperty
+default = str "default"
+
+manipulation :: StyleProperty
+manipulation = str "manipulation"
+
+pointer :: StyleProperty
+pointer = str "pointer"
+
+solid :: StyleProperty
+solid = str "solid"
+
+ellipsis :: StyleProperty
+ellipsis = str "ellipsis"
+
+block :: StyleProperty
+block = str "block"
+
+inlineBlock :: StyleProperty
+inlineBlock = str "inline-block"
+
+flex :: StyleProperty
+flex = str "flex"
+
+grid :: StyleProperty
+grid = str "grid"
+
+inlineGrid :: StyleProperty
+inlineGrid = str "inline-grid"
+
+inlineFlex :: StyleProperty
+inlineFlex = str "inline-flex"
+
+flexStart :: StyleProperty
+flexStart = str "flex-start"
+
+flexEnd :: StyleProperty
+flexEnd = str "flex-end"
+
+center :: StyleProperty
+center = str "center"
+
+stretch :: StyleProperty
+stretch = str "stretch"
+
+baseline :: StyleProperty
+baseline = str "baseline"
+
+spaceAround :: StyleProperty
+spaceAround = str "space-around"
+
+spaceBetween :: StyleProperty
+spaceBetween = str "space-between"
+
+spaceEvenly :: StyleProperty
+spaceEvenly = str "space-evenly"
+
+minContent :: StyleProperty
+minContent = str "min-content"
+
+maxContent :: StyleProperty
+maxContent = str "max-content"
+
+preWrap :: StyleProperty
+preWrap = str "pre-wrap"
+
+-- | Use a variable name as a property.
+-- |
+-- | Define a property somewhere:
+-- | ```
+-- | css { "--color-primary": color blue }
+-- | ```
+-- |
+-- | Use the var:
+-- | ```
+-- | css { color: var "--color-primary" }
+-- | ```
+var :: String -> StyleProperty
+var n = str ("var(" <> n <> ")")
 
 -- Absolute length units
 
