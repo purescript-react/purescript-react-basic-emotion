@@ -23,6 +23,10 @@ module React.Basic.Emotion
   , auto
   , inherit
   , unset
+  , initial
+  , revert
+  , borderBox
+  , contentBox
   , hidden
   , visible
   , scroll
@@ -36,6 +40,10 @@ module React.Basic.Emotion
   , solid
   , ellipsis
   , underline
+  , fixed
+  , absolute
+  , relative
+  , sticky
   , block
   , inlineBlock
   , flex
@@ -173,7 +181,7 @@ foreign import css :: forall r. Homogeneous r StyleProperty => { | r } -> Style
 
 foreign import important :: StyleProperty -> StyleProperty
 
-foreign import keyframes :: forall r. Homogeneous r StyleProperty => { | r } -> StyleProperty
+foreign import keyframes :: forall r. Homogeneous r Style => { | r } -> StyleProperty
 
 nested :: Style -> StyleProperty
 nested = unsafeCoerce
@@ -217,6 +225,18 @@ inherit = str "inherit"
 unset :: StyleProperty
 unset = str "unset"
 
+initial :: StyleProperty
+initial = str "initial"
+
+revert :: StyleProperty
+revert = str "revert"
+
+borderBox :: StyleProperty
+borderBox = str "border-box"
+
+contentBox :: StyleProperty
+contentBox = str "content-box"
+
 hidden :: StyleProperty
 hidden = str "hidden"
 
@@ -255,6 +275,18 @@ ellipsis = str "ellipsis"
 
 underline :: StyleProperty
 underline = str "underline"
+
+fixed :: StyleProperty
+fixed = str "fixed"
+
+absolute :: StyleProperty
+absolute = str "absolute"
+
+relative :: StyleProperty
+relative = str "relative"
+
+sticky :: StyleProperty
+sticky = str "sticky"
 
 block :: StyleProperty
 block = str "block"
