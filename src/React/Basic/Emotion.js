@@ -9,7 +9,7 @@ exports.emptyStyleProperty = undefined;
 
 const flattenDataProp = (component, props) => {
   let data = null;
-  if (typeof component === "string" && props._data != null) {
+  if (typeof component === "object" && props._data != null) {
     data = { _data: undefined };
     Object.entries(props._data).forEach(function(entry) {
       data["data-" + entry[0]] = entry[1];
