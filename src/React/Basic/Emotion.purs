@@ -199,7 +199,7 @@ int
 int = unsafeCoerce
 
 num
-  :: Warn (Text "`int` is deprecated and may be removed in future versions. Prefer `str` or one of the unit combinators like `px` or `em` instead.")
+  :: Warn (Text "`num` is deprecated and may be removed in future versions. Prefer `str` or one of the unit combinators like `px` or `em` instead.")
   => Number
   -> StyleProperty
 num = unsafeCoerce
