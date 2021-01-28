@@ -208,7 +208,7 @@ fallbacks :: Array StyleProperty -> StyleProperty
 fallbacks = unsafeCoerce
 
 url :: URL -> StyleProperty
-url (URL url') = str ("url(" <> url' <> ")")
+url (URL url') = str ("url(\"" <> url' <> "\")")
 
 color :: Color -> StyleProperty
 color = str <<< cssStringHSLA
