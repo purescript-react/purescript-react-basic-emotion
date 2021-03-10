@@ -81,6 +81,7 @@ import Data.Int as Int
 import Data.Number.Format (toString) as Number
 import Data.String as String
 import Foreign as F
+import Foreign.Object (Object, fromHomogeneous)
 import Prim.TypeError (class Warn, Text)
 import React.Basic (JSX, ReactComponent)
 import Type.Row.Homogeneous (class Homogeneous)
@@ -178,16 +179,16 @@ foreign import elementKeyed_ ::
 foreign import global :: ReactComponent { styles :: Style }
 
 css :: forall r. Homogeneous r StyleProperty => { | r } -> Style
-css = _css
+css = css_ <<< fromHomogeneous
 
-foreign import _css :: forall r. { | r } -> Style
+foreign import css_ :: Object StyleProperty -> Style
 
 foreign import important :: StyleProperty -> StyleProperty
 
 keyframes :: forall r. Homogeneous r Style => { | r } -> StyleProperty
-keyframes = _keyframes
+keyframes = keyframes_ <<< fromHomogeneous
 
-foreign import _keyframes :: forall r. { | r } -> StyleProperty
+foreign import keyframes_ :: Object Style -> StyleProperty
 
 nested :: Style -> StyleProperty
 nested = unsafeCoerce

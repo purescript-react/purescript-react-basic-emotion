@@ -33,8 +33,8 @@ exports.elementKeyed_ = (component, props) =>
 
 exports.global = Emotion.Global;
 
-exports._css = Emotion.css;
+exports.css_ = Emotion.css;
 
 exports.important = prop => typeof prop === "string" ? prop + " !important" : prop;
 
-exports._keyframes = Emotion.keyframes;
+exports.keyframes_ = Emotion.keyframes;
