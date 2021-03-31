@@ -15,12 +15,12 @@ border :: forall r. { borderSize :: Size, borderColor :: String | r } -> E.Style
 border { borderSize, borderColor } =
   E.css
     { borderWidth:
-      E.int case borderSize of
+      E.px case borderSize of
         S -> 1
         M -> 2
         L -> 4
     , borderColor: E.str borderColor
-    , borderRadius: E.int 4
+    , borderRadius: E.px 4
     , borderStyle: E.str "solid"
     , padding: E.str "16px 24px"
     }
@@ -30,15 +30,15 @@ text size =
   E.css
     { fontFamily: E.str "sans-serif"
     , fontSize:
-      E.int case size of
+      E.px case size of
         S -> 14
         M -> 18
         L -> 32
     , fontWeight:
-      E.int case size of
-        S -> 400
-        M -> 500
-        L -> 800
+      E.str case size of
+        S -> "400"
+        M -> "500"
+        L -> "800"
     }
 
 type SlatProps
@@ -93,8 +93,8 @@ mkEx = do
                 , css =
                   E.merge
                     [ E.css
-                        { padding: E.int 4
-                        , maxWidth: E.int 200
+                        { padding: E.px 4
+                        , maxWidth: E.px 200
                         }
                     , text S
                     ]
