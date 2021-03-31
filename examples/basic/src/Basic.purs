@@ -4,7 +4,7 @@ import Prelude
 import Effect (Effect)
 import React.Basic.DOM as R
 import React.Basic.Emotion as E
-import React.Basic.Hooks (JSX, ReactComponent, component, element, fragment)
+import React.Basic.Hooks (JSX, ReactComponent, element, fragment, reactComponent)
 
 data Size
   = S
@@ -61,7 +61,7 @@ slatDefaults =
 mkSlat :: Effect (ReactComponent SlatProps)
 mkSlat = do
   box <- mkBox
-  component "Slat" \props ->
+  reactComponent "Slat" \props ->
     pure
       $ E.element
           box
@@ -79,7 +79,7 @@ mkSlat = do
 mkEx :: Effect (ReactComponent {})
 mkEx = do
   slat <- mkSlat
-  component "BasicEx" \props -> React.do
+  reactComponent "BasicEx" \props -> React.do
     pure
       $ fragment
           [ element slat
@@ -123,7 +123,7 @@ boxStyle =
 
 mkBox :: Effect (ReactComponent BoxProps)
 mkBox = do
-  component "Box" \props ->
+  reactComponent "Box" \props ->
     pure
       $ E.element R.div'
           { className: props.className
