@@ -177,11 +177,17 @@ foreign import elementKeyed_ ::
 
 foreign import global :: ReactComponent { styles :: Style }
 
-foreign import css :: forall r. Homogeneous r StyleProperty => { | r } -> Style
+css :: forall r. Homogeneous r StyleProperty => { | r } -> Style
+css = _css
+
+foreign import _css :: forall r. { | r } -> Style
 
 foreign import important :: StyleProperty -> StyleProperty
 
-foreign import keyframes :: forall r. Homogeneous r Style => { | r } -> StyleProperty
+keyframes :: forall r. Homogeneous r Style => { | r } -> StyleProperty
+keyframes = _keyframes
+
+foreign import _keyframes :: forall r. { | r } -> StyleProperty
 
 nested :: Style -> StyleProperty
 nested = unsafeCoerce
