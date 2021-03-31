@@ -1,6 +1,6 @@
 "use strict";
 
-const Emotion = require("@emotion/core");
+const Emotion = require("@emotion/react");
 const createElement = Emotion.jsx;
 
 exports.emptyStyle = undefined;

@@ -26,7 +26,7 @@
     "purescript": "^0.14.0"
   },
   "dependencies": {
-    "@emotion/core": "^10.0.28",
-    "react": "^16.13.1"
+    "@emotion/react": "^11.1.5",
+    "react": "^17.0.2"
   }
 }
