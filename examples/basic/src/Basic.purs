@@ -4,7 +4,7 @@ import Prelude
 import Effect (Effect)
 import React.Basic.DOM as R
 import React.Basic.Emotion as E
-import React.Basic.Hooks (JSX, ReactComponent, component, element, fragment)
+import React.Basic.Hooks (JSX, ReactComponent, element, fragment, reactComponent)
 
 data Size
   = S
@@ -15,12 +15,12 @@ border :: forall r. { borderSize :: Size, borderColor :: String | r } -> E.Style
 border { borderSize, borderColor } =
   E.css
     { borderWidth:
-      E.int case borderSize of
+      E.px case borderSize of
         S -> 1
         M -> 2
         L -> 4
     , borderColor: E.str borderColor
-    , borderRadius: E.int 4
+    , borderRadius: E.px 4
     , borderStyle: E.str "solid"
     , padding: E.str "16px 24px"
     }
@@ -30,15 +30,15 @@ text size =
   E.css
     { fontFamily: E.str "sans-serif"
     , fontSize:
-      E.int case size of
+      E.px case size of
         S -> 14
         M -> 18
         L -> 32
     , fontWeight:
-      E.int case size of
-        S -> 400
-        M -> 500
-        L -> 800
+      E.str case size of
+        S -> "400"
+        M -> "500"
+        L -> "800"
     }
 
 type SlatProps
@@ -61,7 +61,7 @@ slatDefaults =
 mkSlat :: Effect (ReactComponent SlatProps)
 mkSlat = do
   box <- mkBox
-  component "Slat" \props ->
+  reactComponent "Slat" \props ->
     pure
       $ E.element
           box
@@ -79,7 +79,7 @@ mkSlat = do
 mkEx :: Effect (ReactComponent {})
 mkEx = do
   slat <- mkSlat
-  component "BasicEx" \props -> React.do
+  reactComponent "BasicEx" \props -> React.do
     pure
       $ fragment
           [ element slat
@@ -93,8 +93,8 @@ mkEx = do
                 , css =
                   E.merge
                     [ E.css
-                        { padding: E.int 4
-                        , maxWidth: E.int 200
+                        { padding: E.px 4
+                        , maxWidth: E.px 200
                         }
                     , text S
                     ]
@@ -123,7 +123,7 @@ boxStyle =
 
 mkBox :: Effect (ReactComponent BoxProps)
 mkBox = do
-  component "Box" \props ->
+  reactComponent "Box" \props ->
     pure
       $ E.element R.div'
           { className: props.className

@@ -12,16 +12,17 @@
     "url": "https://github.com/lumihq/purescript-react-basic-emotion.git"
   },
   "dependencies": {
-    "purescript-colors": "^5.0.0",
-    "purescript-foreign": "^5.0.0",
-    "purescript-numbers": "^7.0.0",
-    "purescript-prelude": "^4.1.0",
-    "purescript-react-basic": "^13.0.0 || ^14.0.0 || ^15.0.0",
-    "purescript-typelevel-prelude": "^5.0.2",
-    "purescript-unsafe-reference": "^3.0.1"
+    "purescript-colors": "^6.0.0",
+    "purescript-foreign": "^6.0.0",
+    "purescript-numbers": "^8.0.0",
+    "purescript-prelude": "^5.0.0",
+    "purescript-react-basic": "^16.0.0",
+    "purescript-react-basic-dom": "https://github.com/lumihq/purescript-react-basic-dom.git#4.0.1",
+    "purescript-typelevel-prelude": "^6.0.0",
+    "purescript-unsafe-reference": "^4.0.0"
   },
   "devDependencies": {
-    "purescript-psci-support": "^4.0.0",
-    "purescript-react-basic-hooks": ">=2.0.2 <7.0.0"
+    "purescript-psci-support": "^5.0.0",
+    "purescript-react-basic-hooks": "^7.0.0"
   }
 }

@@ -1,6 +1,6 @@
 "use strict";
 
-const Emotion = require("@emotion/core");
+const Emotion = require("@emotion/react");
 const createElement = Emotion.jsx;
 
 exports.emptyStyle = undefined;
@@ -33,8 +33,8 @@ exports.elementKeyed_ = (component, props) =>
 
 exports.global = Emotion.Global;
 
-exports.css = _homogeneousDict => Emotion.css;
+exports._css = Emotion.css;
 
 exports.important = prop => typeof prop === "string" ? prop + " !important" : prop;
 
-exports.keyframes = _homogeneousDict => Emotion.keyframes;
+exports._keyframes = Emotion.keyframes;
