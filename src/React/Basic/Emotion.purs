@@ -5,6 +5,8 @@ module React.Basic.Emotion
   , style
   , class IsStyleProperty
   , prop
+  , class StyledInput
+  , class StyledInputRl
   , element
   , elementKeyed
   , css
@@ -82,9 +84,12 @@ import Data.Number.Format (toString) as Number
 import Data.String as String
 import Foreign as F
 import Foreign.Object (Object, fromHomogeneous)
+import Prim.Row as Row
+import Prim.RowList (class RowToList, Cons, Nil, RowList)
 import Prim.TypeError (class Warn, Text)
 import React.Basic (JSX, ReactComponent)
 import Type.Row.Homogeneous (class Homogeneous)
+import Type.RowList (class ListToRow)
 import Unsafe.Coerce (unsafeCoerce)
 import Web.HTML.History (URL(..))
 
@@ -140,22 +145,42 @@ class IsStyleProperty a where
 instance isStylePropertyStyleProperty :: IsStyleProperty StyleProperty where
   prop = identity
 
+class StyledInput (input :: Row Type) (base :: Row Type) | input -> base
+instance styledInputI ::
+  ( RowToList input inputRl
+  , StyledInputRl inputRl baseRl
+  , ListToRow baseRl base1
+  , Row.Cons "className" String base1 base2
+  , Row.Nub base2 base
+  ) => StyledInput input base
+
+class StyledInputRl (inputRl :: RowList Type) (baseRl :: RowList Type) | inputRl -> baseRl
+
+instance styledInputRlNil :: StyledInputRl Nil Nil
+else instance styledInputRlConsCss ::
+  StyledInputRl inputTl base =>
+  StyledInputRl (Cons "css" Style inputTl) base
+else instance styledInputRlConsOther ::
+  StyledInputRl inputTl baseTl =>
+  StyledInputRl (Cons name v inputTl) (Cons name v baseTl)
+
 -- | Create a `JSX` node from a `ReactComponent`, by providing the props.
 -- |
 -- | This function is identical to `React.Basic.element` plus Emotion's
 -- | `css` prop.
 element ::
-  forall props.
-  ReactComponent { className :: String | props } ->
-  { className :: String, css :: Style | props } ->
+  forall props' props.
+  StyledInput props' props =>
+  ReactComponent { | props } ->
+  { | props' } ->
   JSX
 element = runFn2 element_
 
 foreign import element_ ::
-  forall props.
+  forall props' props.
   Fn2
-    (ReactComponent { className :: String | props })
-    { className :: String, css :: Style | props }
+    (ReactComponent { | props })
+    { | props' }
     JSX
 
 -- | Create a `JSX` node from a `ReactComponent`, by providing the props.
@@ -163,17 +188,17 @@ foreign import element_ ::
 -- | This function is identical to `React.Basic.element` plus Emotion's
 -- | `css` prop.
 elementKeyed ::
-  forall props.
-  ReactComponent { className :: String | props } ->
-  { key :: String, className :: String, css :: Style | props } ->
+  forall props' props.
+  ReactComponent { | props } ->
+  { key :: String | props' } ->
   JSX
 elementKeyed = runFn2 elementKeyed_
 
 foreign import elementKeyed_ ::
-  forall props.
+  forall props' props.
   Fn2
-    (ReactComponent { className :: String | props })
-    { key :: String, className :: String, css :: Style | props }
+    (ReactComponent { | props })
+    { key :: String | props'}
     JSX
 
 foreign import global :: ReactComponent { styles :: Style }
