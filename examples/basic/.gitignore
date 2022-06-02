@@ -2,3 +2,4 @@ output
 html/index.js
 package-lock.json
 node_modules
+.spago

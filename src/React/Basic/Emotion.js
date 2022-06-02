@@ -1,11 +1,10 @@
-"use strict";
+import * as Emotion from '@emotion/react';
 
-const Emotion = require("@emotion/react");
 const createElement = Emotion.jsx;
 
-exports.emptyStyle = undefined;
+export const emptyStyle = undefined;
 
-exports.emptyStyleProperty = undefined;
+export const emptyStyleProperty = undefined;
 
 const flattenDataProp = (component, props) => {
   let data = null;
@@ -18,7 +17,7 @@ const flattenDataProp = (component, props) => {
   return data == null ? props : Object.assign({}, props, data);
 };
 
-exports.element_ = (component, props, areChildrenDynamic) => {
+export const element_ = (component, props, areChildrenDynamic) => {
   const args = [component, flattenDataProp(component, props)];
   return createElement.apply(
     null,
@@ -28,13 +27,13 @@ exports.element_ = (component, props, areChildrenDynamic) => {
   );
 };
 
-exports.elementKeyed_ = (component, props) =>
-  exports.element_(component, props, true);
+export const elementKeyed_ = (component, props) =>
+  element_(component, props, true);
 
-exports.global = Emotion.Global;
+export const global = Emotion.Global;
 
-exports.css_ = Emotion.css;
+export const css_ = Emotion.css;
 
-exports.important = prop => typeof prop === "string" ? prop + " !important" : prop;
+export const important = prop => typeof prop === "string" ? prop + " !important" : prop;
 
-exports.keyframes_ = Emotion.keyframes;
+export const keyframes_ = Emotion.keyframes;
