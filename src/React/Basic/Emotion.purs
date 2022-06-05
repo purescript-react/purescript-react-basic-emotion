@@ -1,74 +1,116 @@
 module React.Basic.Emotion
   ( Style
   , StyleProperty
+  , absolute
+  , auto
+  , baseline
+  , block
+  , borderBox
+  , center
+  , ch
+  , ch2
+  , ch4
   , class IsStyle
-  , style
   , class IsStyleProperty
-  , prop
+  , cm
+  , cm2
+  , cm4
+  , color
+  , column
+  , contentBox
+  , css
+  , default
   , element
   , elementKeyed
-  , css
-  , global
-  , important
-  , keyframes
-  , nested
-  , merge
-  , str
-  , int
-  , num
-  , fallbacks
-  , url
-  , color
-  , none
-  , auto
-  , inherit
-  , unset
-  , initial
-  , revert
-  , borderBox
-  , contentBox
-  , hidden
-  , visible
-  , scroll
-  , wrap
-  , nowrap
-  , row
-  , column
-  , default
-  , manipulation
-  , pointer
-  , solid
   , ellipsis
-  , underline
+  , em
+  , em2
+  , em4
+  , ex
+  , ex2
+  , ex4
+  , fallbacks
   , fixed
-  , absolute
-  , relative
-  , sticky
-  , block
-  , inlineBlock
   , flex
-  , inlineFlex
-  , grid
-  , inlineGrid
-  , flexStart
   , flexEnd
-  , center
-  , stretch
-  , baseline
-  , spaceAround
+  , flexStart
+  , global
+  , grid
+  , hidden
+  , important
+  , inches
+  , inches2
+  , inches4
+  , inherit
+  , initial
+  , inlineBlock
+  , inlineFlex
+  , inlineGrid
+  , int
+  , keyframes
+  , manipulation
+  , maxContent
+  , merge
+  , minContent
+  , mm
+  , mm2
+  , mm4
+  , nested
+  , none
+  , nowrap
+  , num
+  , pc
+  , pc2
+  , pc4
+  , percent
+  , percent2
+  , percent4
+  , pointer
+  , preWrap
+  , prop
+  , pt
+  , pt2
+  , pt4
+  , px
+  , px'
+  , px2
+  , px2'
+  , px4
+  , px4'
+  , relative
+  , rem
+  , rem2
+  , rem4
+  , revert
+  , row
+  , scroll
+  , solid
   , spaceBetween
   , spaceEvenly
-  , minContent
-  , maxContent
-  , preWrap
+  , sticky
+  , str
+  , stretch
+  , style
+  , underline
+  , unset
+  , url
   , var
-  , px, px', cm, mm, inches, pt, pc
-  , em, ex, ch, rem, vw, vh, vmin, vmax, percent
-  , px2, px2', cm2, mm2, inches2, pt2, pc2
-  , em2, ex2, ch2, rem2, vw2, vh2, vmin2, vmax2, percent2
-  , px4, px4', cm4, mm4, inches4, pt4, pc4
-  , em4, ex4, ch4, rem4, vw4, vh4, vmin4, vmax4, percent4
-  ) where
+  , vh
+  , vh2
+  , vh4
+  , visible
+  , vmax
+  , vmax2
+  , vmax4
+  , vmin
+  , vmin2
+  , vmin4
+  , vw
+  , vw2
+  , vw4
+  , wrap
+  )
+  where
 
 import Prelude
 

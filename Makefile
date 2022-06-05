@@ -3,7 +3,7 @@ all: build examples
 build: bower_components node_modules
 	npx pulp build
 
-examples: bower_components node_modules
+examples: node_modules
 	find examples -maxdepth 2 -type f -iname makefile -execdir make \;
 
 bower_components: node_modules

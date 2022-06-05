@@ -4,18 +4,21 @@ You can edit this file as you like.
 -}
 { name = "react-basic-emotion"
 , dependencies =
-  [ "colors"
-  , "console"
-  , "effect"
+  [ "arrays"
+  , "colors"
+  , "either"
   , "foreign"
   , "foreign-object"
+  , "functions"
+  , "integers"
   , "numbers"
   , "prelude"
-  , "psci-support"
   , "react-basic"
-  , "react-basic-hooks"
+  , "strings"
+  , "transformers"
   , "typelevel-prelude"
-  , "unsafe-reference"
+  , "unsafe-coerce"
+  , "web-html"
   ]
 , packages = ./packages.dhall
 , sources = [ "src/**/*.purs" ]
