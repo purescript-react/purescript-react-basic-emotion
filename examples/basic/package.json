@@ -1,11 +1,11 @@
 {
   "dependencies": {
-    "@emotion/react": "^11.1.5",
-    "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "@emotion/react": "^11.9.3",
+    "react": "18.0.0",
+    "react-dom": "18.0.0"
   },
   "devDependencies": {
     "browserify": "17.0.0",
-    "esbuild": "^0.14.42"
+    "esbuild": "^0.14.49"
   }
 }
