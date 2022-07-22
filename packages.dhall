@@ -1,37 +1,11 @@
 let upstream =
-      https://github.com/purescript/package-sets/releases/download/psc-0.15.0-20220527/packages.dhall
-        sha256:15dd8041480502850e4043ea2977ed22d6ab3fc24d565211acde6f8c5152a799
+      https://github.com/purescript/package-sets/releases/download/psc-0.15.2-20220706/packages.dhall
+        sha256:7a24ebdbacb2bfa27b2fc6ce3da96f048093d64e54369965a2a7b5d9892b6031
 
 in  upstream
-  with react-basic-hooks =
-    { dependencies =
-      [ "aff"
-      , "aff-promise"
-      , "bifunctors"
-      , "console"
-      , "control"
-      , "datetime"
-      , "effect"
-      , "either"
-      , "exceptions"
-      , "foldable-traversable"
-      , "functions"
-      , "indexed-monad"
-      , "integers"
-      , "maybe"
-      , "newtype"
-      , "now"
-      , "nullable"
-      , "ordered-collections"
-      , "prelude"
-      , "react-basic"
-      , "refs"
-      , "tuples"
-      , "type-equality"
-      , "unsafe-coerce"
-      , "unsafe-reference"
-      , "web-html"
-      ]
-    , repo = "https://github.com/megamaddu/purescript-react-basic-hooks"
-    , version = "v8.0.0"
+  with react-basic =
+    { dependencies = [ "effect", "prelude", "record" ]
+    , repo = "https://github.com/lumihq/purescript-react-basic"
+    , version = "v17.0.0"
     }
+  with react-basic-dom.version = "4633ad95b47a5806ca559dfb3b16b5339564f0ad"

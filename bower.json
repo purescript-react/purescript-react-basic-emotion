@@ -16,7 +16,7 @@
     "dependencies": {
         "purescript-arrays": "^v7.0.0",
         "purescript-colors": "^v7.0.1",
-        "purescript-either": "^v6.0.0",
+        "purescript-either": "^v6.1.0",
         "purescript-foreign": "^v7.0.0",
         "purescript-foreign-object": "^v4.0.0",
         "purescript-functions": "^v6.0.0",
