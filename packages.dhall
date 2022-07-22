@@ -8,4 +8,4 @@ in  upstream
     , repo = "https://github.com/lumihq/purescript-react-basic"
     , version = "v17.0.0"
     }
-  with react-basic-dom.version = "4633ad95b47a5806ca559dfb3b16b5339564f0ad"
+  with react-basic-dom.version = "v6.0.0"
