@@ -85,6 +85,7 @@ module React.Basic.Emotion
   , row
   , scroll
   , solid
+  , spaceAround
   , spaceBetween
   , spaceEvenly
   , sticky
